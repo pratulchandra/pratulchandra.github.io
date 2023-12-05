@@ -1,0 +1,65 @@
+<%- include('../partials/header') %>
+<%- include('../partials/menu') %>
+<body>
+	<main>
+	  <div class="" style="background-color: #0f415c;">
+		<div class="container-fluid" style="padding: 2%; ">
+		  <form class="" action="/reviews/get_reviews" method="post">
+			<h1> Brewery Reviews </h1>
+			<div class="row">
+			  <div class="col-3">
+			  </div>
+			  <div class="col-5">
+				<input class="form-control" type="text" name="brewery" placeholder="Enter Brewery Name">
+			  </div>
+			  <div class="col-1">
+				<input class="btn btn-light" type="submit" name="Submit" value = "Submit"/>
+			  </div>
+			</div>
+		  </form>
+		</div>
+	  </div>
+	  <table class ="table">
+		  <thead>
+			  <tr>
+				  <th scope="col">Review #</th>
+				  <th scope="col">Brewery Name</th>
+				  <th scope="col">Review</th>
+				  <th scope="col">Review Date</th>
+			  </tr>
+		  </thead>
+		  </tbody>
+	  <%
+		var count = 0;
+		if (filter.length > 0) {
+			var table = '';
+			filter.forEach(function(item){
+				table += '<tr>';
+				table += '<th scope="row">' + count + '</th>';
+				table += '<td>' + item.brewery_name + '</td>';
+				table += '<td>' + item.review + '</td>';
+				table += '<td>' + item.review_date + '</td>';
+				table += '</tr>';
+				count += 1;
+			});
+		%>
+			<%- table %>
+		<% }
+		else if (data) {
+			var table = '';
+			data.forEach(function(item){
+				table += '<tr>';
+				table += '<th scope="row">' + count + '</th>';
+				table += '<td>' + item.brewery_name + '</td>';
+				table += '<td>' + item.review + '</td>';
+				table += '<td>' + item.review_date + '</td>';
+				table += '</tr>';
+				count += 1;
+			}); 
+		%>
+				<%- table %>
+		<% } %>
+			</tbody>
+		</table>
+	</main>
+<%- include('../partials/footer') %>

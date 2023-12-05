@@ -1,0 +1,34 @@
+<%
+  if (items) {
+    counter = 0;
+	  var cards = '<div class = "row">';
+    items.forEach(function(item){
+        cards += '<div class="col-sm-4">';
+        cards += '<div class="card" style="width: 18rem;">';
+
+        if(item.name)
+            cards += '<div class="card-body"><h5 class="card-title">' + item.name + '</h5>';
+        else
+            cards += '<div class="card-body"><h5 class="card-title">No name found.</h5>';
+
+        if(item.brewery_type)
+            cards += '<p class="card-text">' + item.brewery_type + '</p>';
+        else
+            cards += '<p class="card-text">No brewery type found.</p>';
+
+        if(item.street)
+            cards += '<p class="card-text">' + item.street + '</p>';
+        else
+            cards += '<p class="card-text">No address found.</p>';
+
+        cards += '<a href="#myModal" class="btn btn-info" data-toggle="modal" id="' + item.name; 
+        cards += '" onclick="openModal(this.id)">Add Review</a>';
+        cards += '</div></div></div>';
+        counter++;
+        if(counter % 3 == 0)
+            cards += '</div><div class = "row">';
+    }); 
+
+%>
+    <%- cards %>
+<% } %>
